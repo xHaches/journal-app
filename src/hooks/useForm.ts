@@ -1,15 +1,19 @@
 import { ChangeEvent, useEffect, useMemo, useState } from "react";
 
 export const useForm = <T>(
-  inicitalForm: { [key: string]: string } = {}, 
+  initialForm: { [key: string]: string } = {}, 
   formValidations: { [key: string]: [(value: string) => boolean, string] } = {}) => {
 
-  const [formState, setFormState] = useState(inicitalForm);
+  const [formState, setFormState] = useState(initialForm);
   const [formValidation, setFormValidation] = useState<{[key: string]: string | null}>({});
 
   useEffect(() => {
     createValidators();  
   }, [formState]);
+
+  useEffect(() => {
+    setFormState(initialForm)
+  }, [initialForm])
 
   const isFormValid = useMemo(() => {
     for (const formValue of Object.keys(formValidation)) {
@@ -27,7 +31,7 @@ export const useForm = <T>(
   }
 
   const onResetForm = (() => {
-    setFormState(inicitalForm);
+    setFormState(initialForm);
   });
 
   const createValidators = () => {

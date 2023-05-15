@@ -8,7 +8,6 @@ export const Navbar = ({drawerWidth}: {drawerWidth: number}) => {
     const dispatch = useDispatch();
 
     const onLogout = () =>  {
-        console.log('ss');
         dispatch(startLogout());
         
     }

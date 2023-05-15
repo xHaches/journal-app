@@ -48,4 +48,4 @@ export const authSlice = createSlice({
     },
 })
 export const { login, logout, checkingCredentials } = authSlice.actions
-export const selectCount = (state: RootState) => state.auth.value;
+export const selectAuth = (state: RootState) => state.auth.value;
